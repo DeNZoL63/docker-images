@@ -1,0 +1,34 @@
+map $http_host $backend {
+    default $http_host;
+    ordertime.ru 188.124.36.244; #ordertime;
+    www.ordertime.ru 188.124.36.244; #ordertime;
+}
+
+server {
+  listen       80; # public server port
+#  listen	   443;
+#  listen	   [::]:443;
+  server_name  ordertime.ru;
+  server_name  www.ordertime.ru;
+
+#  ssl_certificate /etc/letsencrypt/live/ordertime.ru/fullchain.pem;
+#  ssl_certificate_key /etc/letsencrypt/live/ordertime.ru/privkey.pem;
+
+#  include /etc/letsencrypt/options-ssl-nginx.conf;
+#  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+#  location /.well-known/acme-challenge/ { 
+#    allow all;
+#	root /var/www/certbot; 
+#  }
+
+#  if ($server_port = 80) { set $https_redirect 1; }
+#  if ($host ~ '^www\.') { set $https_redirect 1; }
+#  if ($https_redirect = 1) { return 301 https://ordertime.ru$request_uri; }
+
+  set $simple_server_url http://simple-server:8000;
+
+  location / {
+    proxy_pass $simple_server_url;
+  }
+}
