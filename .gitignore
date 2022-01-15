@@ -1,4 +1,5 @@
 nginx/logs/*
+nginx/data
 !teamcity/data_dir/config/database.properties
 teamcity/data_dir/*
 teamcity/buildserver_pgdata

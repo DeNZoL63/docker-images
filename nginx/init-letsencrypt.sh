@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(ordertime.ru www.ordertime.ru)
+domains=(ordertime.ru www.ordertime.ru cicd.ordertime.ru)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="khrapov.den@gmail.com" # Adding a valid address is strongly recommended
